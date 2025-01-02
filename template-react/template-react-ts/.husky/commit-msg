@@ -1,1 +1,4 @@
+echo "Husky commit-msg hook triggered"
+
+
 pnpm dlx commitlint --edit $1
