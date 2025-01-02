@@ -55,6 +55,9 @@ devDependencies:
   globals:
     specifier: ^15.14.0
     version: 15.14.0
+  husky:
+    specifier: ^9.1.7
+    version: 9.1.7
   less:
     specifier: ^4.2.1
     version: 4.2.1
@@ -2198,6 +2201,12 @@ packages:
   /html-tags@3.3.1:
     resolution: {integrity: sha512-ztqyC3kLto0e9WbNp0aeP+M3kTt+nbaIveGmUxAtZa+8iFgKLUOD4YKM5j+f3QD89bra7UeumolZHKuOXnTmeQ==}
     engines: {node: '>=8'}
+    dev: true
+
+  /husky@9.1.7:
+    resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
+    engines: {node: '>=18'}
+    hasBin: true
     dev: true
 
   /iconv-lite@0.6.3:
