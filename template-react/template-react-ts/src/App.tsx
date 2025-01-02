@@ -7,7 +7,7 @@ function App() {
   const [count, setCount] = useState(0);
   const a = 1;
 
-  // const item = ['a', 'vb', '  eee '];
+  const item = ['a', 'vb', '  eee '];
   return (
     <>
       <div>
