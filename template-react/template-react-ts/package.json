@@ -19,8 +19,6 @@
     "react-router": "^7.1.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.6.1",
-    "@commitlint/config-conventional": "^19.6.0",
     "@eslint/js": "^9.17.0",
     "@types/node": "^22.10.3",
     "@types/react": "^18.3.18",
@@ -31,7 +29,6 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
-    "husky": "^9.1.7",
     "less": "^4.2.1",
     "prettier": "3.4.2",
     "stylelint": "^16.12.0",
