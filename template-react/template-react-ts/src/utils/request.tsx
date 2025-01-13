@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import ReactDOM from 'react-dom/client';
-import { Spin } from 'antd';
+import { SpinCom } from '@/components/antd/index';
 
 let loadingInstance = false;
 let needLoadingRequestCount = 0;
@@ -13,7 +13,7 @@ function shouLoading() {
   dom.setAttribute('id', 'loading');
   dom.style.zIndex = '1000';
   document.body.appendChild(dom);
-  ReactDOM.createRoot(dom).render(<Spin />);
+  ReactDOM.createRoot(dom).render(<SpinCom />);
 }
 
 function removeLoading() {

@@ -1,50 +1,62 @@
-# React + TypeScript + Vite
+# React18 + redux + react-router + antd + typescript
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 项目介绍
 
-Currently, two official plugins are available:
+这是一个使用 React18 + redux + react-router + antd + typescript 的项目模板。在使用前你需要确保你的编辑器中有 [ESlint](https://eslint.org/)、[Prettier](https://prettier.io)、[TypeScript](https://www.typescriptlang.org/)、[Stylelint](https://stylelint.io) 的插件。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+如果你的编辑器没有这些插件，你可以使用 [VSCode](https://code.visualstudio.com/)，并安装这些插件。
 
-## Expanding the ESLint configuration
+- eslint：ESlint
+- prettier：Prettier - Code formatter
+- typescript：TypeScript
+- stylelint：Stylelint
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 项目结构
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+├── .vscode
+├── public
+├── src
+│   ├── api
+│   ├── assets
+│   ├── components
+│   ├── hooks
+│   ├── layout
+│   ├── mock
+│   ├── redux
+│   ├── router
+│   ├── utils
+│   ├── views
+│   ├── axios.d.ts
+│   ├── index.css
+│   └── mian.tsx
+│   └── vite-env.d.ts
+│
+├── .env.development
+├── .env.preview
+├── .env.production
+├── .gitignore
+├── .prettierignore
+├── .prettierrc
+├── .stylelintrc.json
+├── eslint.config.js
+├── index.html
+├── package.json
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+├── vite.config.ts
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 项目运行
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+```bash
+pnpm install
+pnpm run dev
+```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+## 项目打包
+
+```bash
+pnpm run build
 ```

@@ -7,6 +7,8 @@ import './index.css';
 import { BrowserRouter } from 'react-router';
 import RouterView from '@/router';
 
+import '@/mock/index';
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
