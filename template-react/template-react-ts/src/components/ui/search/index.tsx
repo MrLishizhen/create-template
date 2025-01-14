@@ -4,9 +4,9 @@ import type { TextAreaProps } from 'antd/lib/input';
 import { renderFormItems } from './utils';
 import type { FormItemProps, FormProps } from 'antd';
 import { ReactNode, useMemo } from 'react';
-const { TextArea } = Input;
+const { TextArea, Password } = Input;
 
-type FieldType = 'select' | 'input' | 'button' | 'textarea' | 'input_number';
+type FieldType = 'select' | 'input' | 'button' | 'textarea' | 'input_number' | 'password';
 
 type WidgetPropsMap = {
   input: InputProps;
@@ -14,6 +14,7 @@ type WidgetPropsMap = {
   select: SelectProps;
   input_number: InputNumberProps;
   textarea: TextAreaProps;
+  password: InputProps;
   // 其他组件的 props 类型...
 };
 
@@ -32,7 +33,7 @@ export type SearchProps = {
   formProps: FormProps;
 };
 
-const Search = (props: SearchProps) => {
+export const Search = (props: SearchProps) => {
   const { col = 4, fields = [], formProps } = props;
 
   const fieldsMemo = useMemo(() => {
@@ -55,13 +56,15 @@ const Search = (props: SearchProps) => {
                     ''
                   )}
                   {u.widget === 'button' ? (
-                    <Form.Item {...u.widgetItemProps}>
+                    <>
                       {u.widgetRender ? (
                         u.widgetRender()
                       ) : (
-                        <Button {...(u.widgetProps as ButtonProps)}>{u.label}</Button>
+                        <Form.Item {...u.widgetItemProps}>
+                          <Button {...(u.widgetProps as ButtonProps)}>{u.label}</Button>
+                        </Form.Item>
                       )}
-                    </Form.Item>
+                    </>
                   ) : (
                     ''
                   )}
@@ -86,6 +89,13 @@ const Search = (props: SearchProps) => {
                   ) : (
                     ''
                   )}
+                  {u.widget === 'password' ? (
+                    <Form.Item label={u.label} {...u.widgetItemProps}>
+                      <Password {...(u.widgetProps as InputProps)} />
+                    </Form.Item>
+                  ) : (
+                    ''
+                  )}
                 </Col>
               );
             })}
@@ -95,5 +105,3 @@ const Search = (props: SearchProps) => {
     </Form>
   );
 };
-
-export default Search;

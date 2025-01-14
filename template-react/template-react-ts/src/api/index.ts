@@ -1,10 +1,9 @@
 import Axios from '@/utils/request';
 
-export function getMenu(data: user_menu) {
+export function getMenu() {
   return Axios({
     url: '/get_menu',
     method: 'POST',
-    data: data,
     loading: true,
   });
 }

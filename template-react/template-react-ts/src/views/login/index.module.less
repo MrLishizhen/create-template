@@ -1,4 +1,35 @@
 .login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   width: 100%;
   height: 100%;
+
+  background: url('@/assets/images/loginbg.png') no-repeat center center;
+
+  .login_content {
+    box-sizing: border-box;
+    width: 440px;
+    padding: 60px 40px;
+
+    background: #fff;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.25rem 0.5rem 0 rgb(0 0 0 / 5%);
+
+    h1 {
+      font-size: 1.6em;
+    }
+
+    .form {
+      margin-top: 40px;
+    }
+
+    .additional {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+  }
 }

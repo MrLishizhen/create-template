@@ -12,16 +12,22 @@ export type RoutesType = {
   };
 };
 
-const initialState: { routes: RoutesType[] } = {
+const initialState: { routes: RoutesType[]; init: boolean } = {
   routes: [],
+  init: true,
 };
 export const routesSlice = createSlice({
   name: 'menu',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    setInit(state, action) {
+      state.init = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder.addCase(getMenuList.fulfilled, (state, action) => {
       const res = action.payload;
+      state.init = false;
       if (res?.code === 200) {
         state.routes = res?.result;
       } else {
@@ -31,10 +37,12 @@ export const routesSlice = createSlice({
   },
 });
 
+export const { setInit } = routesSlice.actions;
+
 export const getMenuList = createAsyncThunk(
   'menu/getMenu',
-  async (data: user_menu): Promise<request<RoutesType[]>> => {
-    return await getMenu(data);
+  async (): Promise<request<RoutesType[]>> => {
+    return await getMenu();
   },
 );
 

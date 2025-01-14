@@ -1,4 +1,5 @@
 import styles from './index.module.less';
+import { useNavigate } from 'react-router';
 import { Button, Result } from 'antd';
 import type { ResultProps } from 'antd';
 
@@ -11,15 +12,29 @@ const EmptyView = (props: ResultProps) => {
     ...rest
   } = props;
 
+  const navigate = useNavigate();
   return (
-    <Result
-      status={status}
-      title={title}
-      subTitle={subTitle}
-      extra={extra || <Button type='primary'>返回首页</Button>}
-      {...rest}
-      className={styles.empty}
-    />
+    <div>
+      <Result
+        status={status}
+        title={title}
+        subTitle={subTitle}
+        extra={
+          extra || (
+            <Button
+              type='primary'
+              onClick={() => {
+                navigate('/', { replace: true });
+              }}
+            >
+              返回首页
+            </Button>
+          )
+        }
+        {...rest}
+        className={styles.empty}
+      />
+    </div>
   );
 };
 

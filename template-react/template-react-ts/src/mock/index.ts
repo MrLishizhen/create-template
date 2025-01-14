@@ -20,3 +20,13 @@ Mock.mock('/get_menu', function () {
     ],
   });
 });
+
+Mock.mock('/login', function () {
+  return Mock.mock({
+    code: 200,
+    msg: '登陆成功',
+    result: {
+      token: '1234567890',
+    },
+  });
+});

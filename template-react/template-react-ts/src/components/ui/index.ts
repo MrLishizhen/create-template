@@ -1,1 +1,1 @@
-export * as SearchCom from './search';
+export * from './search';
