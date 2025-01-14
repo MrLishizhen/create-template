@@ -15,13 +15,17 @@ const RouterView = () => {
     return state.routesSlice.routes;
   });
 
+  // 获取路由列表
   useEffect(() => {
     if (routesSlice.length === 0) {
       dispatch(getMenuList({ userName: 'admin' }));
     }
   }, [routesSlice, dispatch]);
 
+  // 生成children路由对象
   const routers = useMemo(() => get_routers(routesSlice), [routesSlice]);
+
+  // 处理访问/时，跳转默认路由
   const handleRouters = [];
   if (routers.length > 0) {
     const [router] = routers;
@@ -32,6 +36,7 @@ const RouterView = () => {
     });
   }
 
+  // 生成路由对象
   const router = useRoutes([
     ...handleRouters,
     {

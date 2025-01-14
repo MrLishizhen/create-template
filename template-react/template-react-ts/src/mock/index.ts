@@ -8,11 +8,12 @@ Mock.mock('/get_menu', function () {
     msg: '',
     result: [
       {
-        id: 1,
-        parentId: 0,
-        name: 'home',
-        link: 'home',
+        id: 1, //id
+        parentId: 0, //父级id
+        name: 'home', //路由文件路径、
+        link: 'home', //path路由地址
         meta: {
+          //路由元信息
           title: '首页',
         },
       },
