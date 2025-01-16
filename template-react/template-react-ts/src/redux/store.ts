@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import routesSlice from './slice-reducer/routes';
+import userSlice from './slice-reducer/user';
 const store = configureStore({
   reducer: {
     routesSlice,
+    userSlice,
   },
 });
 

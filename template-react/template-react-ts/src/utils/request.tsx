@@ -1,11 +1,17 @@
 import Axios from 'axios';
 import ReactDOM from 'react-dom/client';
 import { SpinCom } from '@/components/antd/index';
+import { get_sessionStorage } from '@/router/utils';
+
+const VITE_APP_AUTH = import.meta.env.VITE_APP_AUTH;
+const VITE_APP_TOKEN = import.meta.env.VITE_APP_TOKEN;
+const VITE_APP_BASEURL = import.meta.env.VITE_APP_BASEURL;
 
 let loadingInstance = false;
 let needLoadingRequestCount = 0;
 Axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-Axios.defaults.baseURL = '/';
+Axios.defaults.baseURL = VITE_APP_BASEURL;
+Axios.defaults.timeout = 50000;
 
 function shouLoading() {
   loadingInstance = true;
@@ -28,6 +34,10 @@ function removeLoading() {
 //请求拦截
 Axios.interceptors.request.use(
   config => {
+    const token = get_sessionStorage(VITE_APP_AUTH);
+    if (token) {
+      config.headers[VITE_APP_TOKEN] = token;
+    }
     if (config?.loading) {
       if (needLoadingRequestCount === 0) {
         //创建loading效果

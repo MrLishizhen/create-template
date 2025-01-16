@@ -1,12 +1,19 @@
 import { useRoutes, Navigate, useLocation, useNavigate } from 'react-router';
-import { Suspense, useMemo, useEffect } from 'react';
+import type { RouteObject } from 'react-router';
+import { useMemo, useEffect } from 'react';
 import { Button } from 'antd';
 import { getMenuList } from '@/redux/slice-reducer/routes';
 import { useAppSelector, useAppDispatch } from '@/redux/hook';
 import LayoutView from '@/layout';
 import Login from '@/views/login';
 import EmptyView from '@/views/empty';
-import { get_routers, auth, get_sessionStorage, remove_sessionStorage } from './utils';
+import {
+  get_routers,
+  auth,
+  set_sessionStorage,
+  get_sessionStorage,
+  remove_sessionStorage,
+} from './utils';
 
 const LAYOUT = import.meta.env.VITE_APP_ROUTERLAYOUT;
 const LOGIN = import.meta.env.VITE_APP_LOGIN;
@@ -25,7 +32,6 @@ const RouterView = () => {
 
   // 判断是否登陆
   useEffect(() => {
-    console.log(pathname);
     if (pathname === LOGIN) {
       return;
     } else {
@@ -58,14 +64,28 @@ const RouterView = () => {
     }
   }, [routesSlice]);
 
+  const firstPath = (data: RouteObject) => {
+    const result: React.Key[] = [];
+    function recursion(item: RouteObject) {
+      result.push(item?.path || '');
+      if (item.children && item.children.length > 0) {
+        recursion(item.children[0]);
+      }
+    }
+    recursion(data);
+    return result;
+  };
+
   // 处理访问/时，跳转默认路由
   const handleRouters = [];
   if (routers.length > 0) {
     const [router] = routers;
-    const { path } = router;
+    const path = firstPath(router);
+    const initPath = path.filter(item => item).join('/');
+    set_sessionStorage('initPath', initPath);
     handleRouters.push({
       path: '/',
-      element: <Navigate to={`${LAYOUT}/${path}`} />,
+      element: <Navigate to={`${LAYOUT}/${initPath}`} />,
     });
   } else {
     handleRouters.push({
@@ -112,7 +132,7 @@ const RouterView = () => {
       children: routers,
     },
   ]);
-  return <Suspense fallback={'加载中。。。'}>{init && pathname !== LOGIN ? '' : router}</Suspense>;
+  return init && pathname !== LOGIN ? '' : router;
 };
 
 export default RouterView;

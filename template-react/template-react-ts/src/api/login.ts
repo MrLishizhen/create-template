@@ -8,3 +8,11 @@ export function login(data: LoginProps) {
     loading: true,
   });
 }
+
+//获取用户信息
+export const getUserInfo = () => {
+  return Axios({
+    url: '/user/info',
+    method: 'GET',
+  });
+};

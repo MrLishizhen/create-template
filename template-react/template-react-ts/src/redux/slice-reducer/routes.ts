@@ -7,14 +7,16 @@ export type RoutesType = {
   parentId: number;
   name: string;
   link: string;
+  icon?: string;
   meta: {
     title: string;
   };
 };
 
-const initialState: { routes: RoutesType[]; init: boolean } = {
+const initialState: { routes: RoutesType[]; init: boolean; initPath: string } = {
   routes: [],
   init: true,
+  initPath: '',
 };
 export const routesSlice = createSlice({
   name: 'menu',

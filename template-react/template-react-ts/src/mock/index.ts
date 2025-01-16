@@ -12,9 +12,48 @@ Mock.mock('/get_menu', function () {
         parentId: 0, //父级id
         name: 'home', //路由文件路径、
         link: 'home', //path路由地址
+        icon: 'HomeOutlined',
         meta: {
           //路由元信息
           title: '首页',
+        },
+      },
+      {
+        id: 2,
+        parentId: 0,
+        name: 'page_table',
+        link: 'page_table',
+        icon: 'TableOutlined',
+        meta: {
+          title: '页面',
+        },
+      },
+      {
+        id: 3,
+        parentId: 0,
+        name: 'multilevel',
+        link: 'multilevel',
+        icon: 'CopyOutlined',
+        meta: {
+          title: '页面',
+        },
+      },
+      {
+        id: 4,
+        parentId: 3,
+        name: 'multilevel/one',
+        link: 'one',
+        meta: {
+          title: '页面一',
+        },
+      },
+      {
+        id: 5,
+        parentId: 3,
+        name: 'multilevel/two',
+        link: 'two',
+        meta: {
+          title: '页面二',
         },
       },
     ],
@@ -27,6 +66,17 @@ Mock.mock('/login', function () {
     msg: '登陆成功',
     result: {
       token: '1234567890',
+    },
+  });
+});
+
+Mock.mock('/user/info', function () {
+  return Mock.mock({
+    code: 200,
+    msg: '获取用户信息成功',
+    result: {
+      name: 'admin',
+      userId: 1,
     },
   });
 });

@@ -25,7 +25,7 @@ export const get_routers = (data: RoutesType[]) => {
 
 // 获取sessionStorage
 export const get_sessionStorage = (key: string) => {
-  return sessionStorage.getItem(key);
+  return sessionStorage.getItem(key) || '';
 };
 
 // 删除sessionStorage
