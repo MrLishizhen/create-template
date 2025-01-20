@@ -19,11 +19,20 @@ export const generateTree = <T extends TreeNode, R>({
     .filter(item => item.parentId === parentId)
     .map(item => {
       const children = generateTree({ data, parentId: item.id, customizer });
+      let customizerResult;
+      if (customizer) {
+        customizerResult = customizer(item);
+      }
+
+      if (!customizerResult) {
+        return null;
+      }
       const result = {
         key: item.link,
-        ...customizer?.(item),
+        ...customizerResult,
         ...(children.length > 0 ? { children } : {}),
       };
       return result;
-    }) as R[];
+    })
+    .filter(u => u) as R[];
 };

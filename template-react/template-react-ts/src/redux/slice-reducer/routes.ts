@@ -10,6 +10,8 @@ export type RoutesType = {
   icon?: string;
   meta: {
     title: string;
+    hideMenu?: boolean;
+    parentMenu?: string;
   };
 };
 

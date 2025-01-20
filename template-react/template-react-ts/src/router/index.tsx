@@ -68,9 +68,8 @@ const RouterView = () => {
     const result: React.Key[] = [];
     function recursion(item: RouteObject) {
       result.push(item?.path || '');
-      if (item.children && item.children.length > 0) {
-        recursion(item.children[0]);
-      }
+      // 优化：使用 forEach 遍历子路由
+      item.children?.forEach(recursion);
     }
     recursion(data);
     return result;

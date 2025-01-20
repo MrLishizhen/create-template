@@ -10,8 +10,13 @@ const LazyView = (props: { router_link: string }) => {
 
   if (router_link && !exclude.includes(router_link)) {
     const URL = '/src/views/' + router_link + '/index.tsx';
+    const standbyURL = '/src/views/' + router_link + '.tsx';
+    if (modules[URL]) {
+      LazyCom = React.lazy(modules[URL]);
+    } else {
+      LazyCom = React.lazy(modules[standbyURL]);
+    }
 
-    LazyCom = React.lazy(modules[URL]);
     return <>{LazyCom ? <LazyCom /> : ''}</>;
   } else {
     return <></>;

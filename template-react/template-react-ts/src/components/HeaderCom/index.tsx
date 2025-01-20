@@ -24,6 +24,7 @@ const HeaderCom = (props: HeaderComProps) => {
   const userInfo = useAppSelector(userState);
   const dispatch = useAppDispatch();
   const [items, setItems] = useState<BreadcrumbProps['items']>([]);
+
   useEffect(() => {
     const pathArr = pathname
       .replace(VITE_APP_ROUTERLAYOUT, '')
@@ -32,8 +33,17 @@ const HeaderCom = (props: HeaderComProps) => {
 
     const result: BreadcrumbProps['items'] = [];
     pathArr.forEach(item => {
-      const route = routesSlice.find(u => u.link === item);
+      const route = routesSlice.find(u => u.link.includes(item));
       if (route) {
+        // const { meta } = route;
+        // if (meta.parentMenu) {
+        //   const parentMenu = routesSlice.find(u => u.link.includes(meta.parentMenu as string));
+        //   if (parentMenu) {
+        //     result.push({
+        //       title: parentMenu.meta.title,
+        //     });
+        //   }
+        // }
         result.push({
           title: route.meta.title,
         });

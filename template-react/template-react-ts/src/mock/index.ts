@@ -50,10 +50,39 @@ Mock.mock('/get_menu', function () {
       {
         id: 5,
         parentId: 3,
+        name: 'multilevel/default',
+        link: 'default/:id',
+        meta: {
+          title: '页面一携带参数跳转',
+          hideMenu: true,
+          parentMenu: 'multilevel/one',
+        },
+      },
+      {
+        id: 5,
+        parentId: 3,
         name: 'multilevel/two',
         link: 'two',
         meta: {
           title: '页面二',
+        },
+      },
+      {
+        id: 6,
+        parentId: 3,
+        name: 'multilevel/three',
+        link: 'three',
+        meta: {
+          title: '页面三多级目录',
+        },
+      },
+      {
+        id: 7,
+        parentId: 6,
+        name: 'multilevel/three/three_one',
+        link: 'three_one',
+        meta: {
+          title: '多级目录第一级',
         },
       },
     ],
