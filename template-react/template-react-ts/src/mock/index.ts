@@ -10,8 +10,8 @@ Mock.mock('/get_menu', function () {
       {
         id: 1, //id
         parentId: 0, //父级id
-        name: 'home', //路由文件路径、
-        link: 'home', //path路由地址
+        name: 'welcome', //路由文件路径、
+        link: 'welcome', //path路由地址
         icon: 'HomeOutlined',
         meta: {
           //路由元信息
@@ -106,6 +106,30 @@ Mock.mock('/user/info', function () {
     result: {
       name: 'admin',
       userId: 1,
+    },
+  });
+});
+
+Mock.mock('/get_pie_data', function () {
+  return Mock.mock({
+    code: 200,
+    msg: '获取数据成功',
+    result: [
+      { value: 1048, name: 'Search Engine' },
+      { value: 735, name: 'Direct' },
+      { value: 580, name: 'Email' },
+      { value: 484, name: 'Union Ads' },
+      { value: 300, name: 'Video Ads' },
+    ],
+  });
+});
+
+Mock.mock('/get_pie_data_total', function () {
+  return Mock.mock({
+    code: 200,
+    msg: '获取数据成功',
+    result: {
+      total: 3147,
     },
   });
 });

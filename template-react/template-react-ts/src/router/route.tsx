@@ -2,7 +2,7 @@ import React from 'react';
 import type { ComponentType } from 'react';
 
 const exclude = ['/login/', '/empty/'];
-const modules = import.meta.glob<{ default: ComponentType }>('@/views/**');
+const modules = import.meta.glob<{ default: ComponentType }>('@/views/**.tsx');
 
 const LazyView = (props: { router_link: string }) => {
   const { router_link } = props;

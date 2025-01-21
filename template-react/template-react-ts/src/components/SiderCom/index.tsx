@@ -95,7 +95,6 @@ const SiderCom = (props: SiderComProps) => {
       <MenuCom
         onClick={({ keyPath }) => {
           setSelectedKeys(keyPath);
-          console.log(keyPath);
           navigate(`${VITE_APP_ROUTERLAYOUT}/${keyPath.reverse().join('/')}`);
         }}
         onOpenChange={openChange}

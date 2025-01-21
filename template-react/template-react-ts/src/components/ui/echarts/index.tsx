@@ -25,7 +25,7 @@ interface EchartsEvents {
   events: (params: ECElementEvent) => void;
 }
 
-interface EchartsContainerType {
+export interface EchartsContainerType {
   echarts_option: EChartsOption;
   events?: EchartsEvents[];
 }
@@ -82,9 +82,12 @@ const EchartsContainer = forwardRef((props: EchartsContainerType, ref) => {
 
   useImperativeHandle(ref, () => {
     return myChart.current;
-  }, [myChart.current]);
+  }, []);
   return (
-    <div style={{ width: '100%', height: '100%', overflow: 'hidden' }} ref={echarts_box_ref}>
+    <div
+      style={{ width: '100%', height: '100%', overflow: 'hidden', display: 'flex' }}
+      ref={echarts_box_ref}
+    >
       <div style={{ flexGrow: 1, height: '100%' }} ref={echarts_ref} />
     </div>
   );
