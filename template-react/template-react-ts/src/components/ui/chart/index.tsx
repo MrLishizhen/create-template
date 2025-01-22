@@ -1,19 +1,21 @@
 import { useEffect, useState } from 'react';
+import { message } from 'antd';
 import styles from './index.module.less';
 import { SpinCom } from '@/components/antd/index';
 import EchartsContainer from '../echarts';
 import type { EchartsContainerType } from '../echarts';
+export type QueryFunction<R, T> = (query: R) => Promise<request<T>>;
 
-export interface ChartProps<R> {
+export interface ChartProps<R = any, T = any> {
   type: string;
   title?: React.ReactNode;
-  echarts_option?: EchartsContainerType['echarts_option'];
+  echarts_option: EchartsContainerType['echarts_option'];
   events?: EchartsContainerType['events'];
-  queryDataAll?: (<T>(query: R) => Promise<request<T>>)[];
-  queryParameters?: R;
-  handleReturnedData?: <T>(data: T, key: string) => void;
+  queryDataAll?: QueryFunction<R, T>[];
+  queryParameters?: R | R[];
+  handleReturnedData?: (data: T[], key: string) => void;
 }
-export const ChartEcharts = <T,>(props: ChartProps<T>) => {
+export const ChartEcharts = <R, T>(props: ChartProps<R, T>) => {
   const { type, title, queryDataAll, queryParameters, echarts_option, events, handleReturnedData } =
     props;
 
@@ -27,17 +29,27 @@ export const ChartEcharts = <T,>(props: ChartProps<T>) => {
           const query =
             queryParameters && Array.isArray(queryParameters)
               ? queryParameters[index]
-              : queryParameters || {};
+              : queryParameters || ({} as R);
           return item({ ...query });
         }),
       ).then(res => {
         setSpinning(false);
+
         if (handleReturnedData) {
-          handleReturnedData(res, type);
+          const data = res
+            .map(item => {
+              if (item.code === 200) {
+                return item.result;
+              }
+              message.error(item.msg);
+              return undefined;
+            })
+            .filter((item): item is T => item !== undefined);
+          handleReturnedData(data, type);
         }
       });
     }
-  }, [queryDataAll, queryParameters, type, handleReturnedData]);
+  }, [queryDataAll, queryParameters, type]);
   return (
     <div className={styles.chart}>
       <div className={styles.chart_top}>{title}</div>

@@ -5,16 +5,38 @@ import { ChartEcharts } from '@/components/ui';
 import type { ChartProps } from '@/components/ui';
 
 import { getPieData, getPieTitleTotal } from '@/api/welcome';
-type ChartEchartsR = {
-  [key: string]: string | number | boolean;
-};
-interface ChartTypes extends ChartProps<ChartEchartsR> {
+
+interface ChartTypes extends ChartProps {
   type: string;
   style: React.CSSProperties;
 }
 const Welcome = () => {
-  const handleReturnedData = (data, key: string) => {
-    console.log(data, key);
+  // 定义 handleReturnedData 函数，使用泛型 T
+  const handleReturnedData: <T>(data: T[], key: string) => void = (data, key) => {
+    // 处理返回的数据
+    if (key === 'fwly') {
+      data.map(item => {
+        const chartOptions = chart.find(u => u.type === key);
+        if (Array.isArray(item)) {
+          if (chartOptions) {
+            const { echarts_option } = chartOptions;
+            if (Array.isArray(echarts_option.series)) {
+              echarts_option.series[0].data = item;
+            }
+          }
+        } else {
+          if (chartOptions) {
+            const { echarts_option } = chartOptions;
+            const { title } = echarts_option;
+            if (title && typeof title === 'object' && 'text' in title) {
+              title.text = (item as { total: number }).total.toString();
+            }
+          }
+        }
+      });
+      setChart([...chart]);
+    }
+    console.log('处理的数据:', data, '键:', key);
   };
 
   const [chart, setChart] = useState<ChartTypes[]>([
@@ -24,6 +46,9 @@ const Welcome = () => {
       queryDataAll: [getPieData, getPieTitleTotal],
       queryParameters: { type: '1' },
       echarts_option: {
+        title: {
+          text: '',
+        },
         tooltip: {
           trigger: 'item',
         },
