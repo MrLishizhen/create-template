@@ -4,10 +4,11 @@ import styles from './index.module.less';
 interface SpinComTypes {
   spin?: SpinProps;
   children?: React.ReactNode;
+  style?: React.CSSProperties;
 }
 
 export const SpinCom = (props: SpinComTypes) => {
-  const { spin = {}, children } = props;
+  const { spin = {}, children, style = {} } = props;
 
   return (
     <Spin
@@ -17,6 +18,7 @@ export const SpinCom = (props: SpinComTypes) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        ...style,
       }}
       wrapperClassName={styles.wrapper}
       indicator={

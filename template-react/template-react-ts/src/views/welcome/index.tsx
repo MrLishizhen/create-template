@@ -36,7 +36,6 @@ const Welcome = () => {
       });
       setChart([...chart]);
     }
-    console.log('处理的数据:', data, '键:', key);
   };
 
   const [chart, setChart] = useState<ChartTypes[]>([

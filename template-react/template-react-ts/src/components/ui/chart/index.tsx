@@ -55,7 +55,7 @@ export const ChartEcharts = <R, T>(props: ChartProps<R, T>) => {
       <div className={styles.chart_top}>{title}</div>
 
       <div className={styles.chart_conenter}>
-        <SpinCom spin={{ spinning }}>
+        <SpinCom spin={{ spinning }} style={{ background: '#fff' }}>
           <EchartsContainer echarts_option={{ ...echarts_option }} events={events} />
         </SpinCom>
       </div>
