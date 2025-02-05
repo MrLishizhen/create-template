@@ -50,7 +50,7 @@ export const Search = (props: SearchProps) => {
                 <Col key={j} span={Math.floor((24 / col) * u.colSpan)}>
                   {u.widget === 'input' ? (
                     <Form.Item label={u.label} {...u.widgetItemProps}>
-                      <Input {...(u.widgetProps as InputProps)} />
+                      <Input autoComplete={'off'} {...(u.widgetProps as InputProps)} />
                     </Form.Item>
                   ) : (
                     ''
@@ -77,21 +77,21 @@ export const Search = (props: SearchProps) => {
                   )}
                   {u.widget === 'textarea' ? (
                     <Form.Item label={u.label} {...u.widgetItemProps}>
-                      <TextArea {...(u.widgetProps as TextAreaProps)} />
+                      <TextArea autoComplete={'off'} {...(u.widgetProps as TextAreaProps)} />
                     </Form.Item>
                   ) : (
                     ''
                   )}
                   {u.widget === 'input_number' ? (
                     <Form.Item label={u.label} {...u.widgetItemProps}>
-                      <InputNumber {...(u.widgetProps as InputNumberProps)} />
+                      <InputNumber autoComplete={'off'} {...(u.widgetProps as InputNumberProps)} />
                     </Form.Item>
                   ) : (
                     ''
                   )}
                   {u.widget === 'password' ? (
                     <Form.Item label={u.label} {...u.widgetItemProps}>
-                      <Password {...(u.widgetProps as InputProps)} />
+                      <Password autoComplete={'off'} {...(u.widgetProps as InputProps)} />
                     </Form.Item>
                   ) : (
                     ''

@@ -133,3 +133,21 @@ Mock.mock('/get_pie_data_total', function () {
     },
   });
 });
+
+Mock.mock('/get_table_data', function () {
+  return Mock.mock({
+    code: 200,
+    msg: '获取数据成功',
+    result: {
+      'result|10': [
+        {
+          'name|+1': ['Hello', 'Mock.js', '!'],
+          key: '@integer(1, 100)',
+          age: '@integer(20, 30)',
+          address: '@county(true)',
+        },
+      ],
+      total: 50,
+    },
+  });
+});

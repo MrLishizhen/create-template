@@ -29,7 +29,7 @@ const Welcome = () => {
             const { echarts_option } = chartOptions;
             const { title } = echarts_option;
             if (title && typeof title === 'object' && 'text' in title) {
-              title.text = (item as { total: number }).total.toString();
+              title.text = '总数：' + (item as { total: number }).total.toString();
             }
           }
         }
@@ -41,7 +41,7 @@ const Welcome = () => {
   const [chart, setChart] = useState<ChartTypes[]>([
     {
       type: 'fwly',
-      style: { width: '100%', height: '416px' },
+      style: { width: '100%', height: '100%' },
       queryDataAll: [getPieData, getPieTitleTotal],
       queryParameters: { type: '1' },
       echarts_option: {
@@ -96,7 +96,7 @@ const Welcome = () => {
               handleReturnedData={handleReturnedData}
               queryParameters={item.queryParameters}
               queryDataAll={item.queryDataAll}
-              title={'访问来源'}
+              title={''}
               echarts_option={item.echarts_option}
             />
           </div>
