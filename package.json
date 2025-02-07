@@ -1,0 +1,31 @@
+{
+  "name": "vis-create-template",
+  "version": "1.0.1",
+  "description": "一个用于快速创建项目模板的脚手架工具",
+  "main": "bin/index.js",
+  "type": "module",
+  "bin": {
+    "vis-create-template": "bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "718647063@qq.com",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^13.1.0",
+    "degit": "^2.8.4",
+    "fs-extra": "^11.3.0",
+    "inquirer": "^12.4.1",
+    "ora": "^8.2.0"
+  },
+  "files": [
+    "bin",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "preferGlobal": true
+}
