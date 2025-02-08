@@ -1,0 +1,20 @@
+name: Sync to Gitee
+
+on:
+  push:
+    branches: [main]  # 当 main 分支有推送时触发
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # 获取完整的 git 历史
+
+      - name: Sync to Gitee
+        run: |
+          git remote add gitee https://qiuyubuliangren:${{ secrets.GITEE_TOKEN }}@gitee.com/qiuyubuliangren/create-template.git
+          git push gitee main --force  # 强制推送到 Gitee
