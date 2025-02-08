@@ -1,14 +1,14 @@
 {
   "name": "vis-create-template",
-  "version": "1.0.2",
+  "version": "1.0.3",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "description": "一个用于快速创建项目模板的脚手架工具",
   "main": "bin/index.js",
   "type": "module",
   "bin": {
     "vis-create-template": "bin/index.js"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "718647063@qq.com",

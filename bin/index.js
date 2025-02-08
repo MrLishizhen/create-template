@@ -5,13 +5,10 @@ import inquirer from 'inquirer';
 import ora from 'ora';
 import path from 'path';
 import fs from 'fs-extra';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
 import { readFile } from 'fs/promises';
 import degit from 'degit';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 // 添加清理函数
 let currentTempDir = null;
@@ -34,10 +31,12 @@ process.on('SIGINT', async () => {
     process.exit(0);
 });
 
-const getPackageJson = async(url)=>{
-    return JSON.parse(
-        await readFile(new URL(url, import.meta.url))
-    );
+// 修改 package.json 读取方式
+const getPackageJson = async () => {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = dirname(__filename);
+    const pkgPath = path.join(__dirname, '../package.json');
+    return JSON.parse(await readFile(pkgPath, 'utf8'));
 }
 
 const list = {
@@ -95,7 +94,7 @@ async function downloadTemplate(template, targetPath) {
 }
 
 try {
-    const packageJson = await getPackageJson('../package.json');
+    const packageJson = await getPackageJson();
     console.log(packageJson.name, packageJson.version);
     
     program
